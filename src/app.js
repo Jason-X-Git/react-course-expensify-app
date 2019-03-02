@@ -22,12 +22,12 @@ const store = configureStore();
 //     console.log(visibleExpenses)
 // })
 
-store.dispatch(addExpense({ description: 'Testing', amount: 30, createdAt: 1500 }))
-store.dispatch(addExpense({ description: 'Coffee', amount: 111, createdAt: 2000 }))
-store.dispatch(addExpense({ description: 'Lunch', amount: 15, createdAt: 9000 }))
-store.dispatch(addExpense({ description: 'Edward Dinner', amount: 50, createdAt: 3000 }))
-store.dispatch(addExpense({ description: 'Mami Dinner', amount: 100, createdAt: 3000 }))
-store.dispatch(addExpense({ description: 'Mami Dinner', amount: 33, createdAt: 16522 }))
+// store.dispatch(addExpense({ description: 'Testing', amount: 30, createdAt: 1500 }))
+// store.dispatch(addExpense({ description: 'Coffee', amount: 111, createdAt: 2000 }))
+// store.dispatch(addExpense({ description: 'Lunch', amount: 15, createdAt: 9000 }))
+// store.dispatch(addExpense({ description: 'Edward Dinner', amount: 50, createdAt: 3000 }))
+// store.dispatch(addExpense({ description: 'Mami Dinner', amount: 100, createdAt: 3000 }))
+// store.dispatch(addExpense({ description: 'Mami Dinner', amount: 33, createdAt: 16522 }))
 
 // store.dispatch(setTextFilter('coffee'))
 
