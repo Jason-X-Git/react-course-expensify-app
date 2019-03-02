@@ -45,5 +45,6 @@ const jsx = (
 );
 
 console.log(store.getState());
+console.log('testing !!!')
 
 ReactDOM.render(jsx, document.getElementById('app'));
