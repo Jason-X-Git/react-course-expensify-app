@@ -1,7 +1,10 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { startAddExpense, addExpense, editExpense, 
-  removeExpense, setExpenses, startSetExpenses, startRemoveExpense } from '../../actions/expenses';
+import {
+  startAddExpense, addExpense, editExpense,
+  removeExpense, setExpenses, startSetExpenses,
+  startRemoveExpense, startEditExpense
+} from '../../actions/expenses';
 import expenses from '../fixtures/expenses';
 import database from '../../firebase/firebase';
 
@@ -9,7 +12,7 @@ const createMockStore = configureMockStore([thunk]);
 
 beforeEach((done) => {
   const expenseData = {};
-  expenses.forEach(({id, description, note, amount, createdAt}) => {
+  expenses.forEach(({ id, description, note, amount, createdAt }) => {
     expenseData[id] = { description, note, amount, createdAt }
   });
   database.ref('expenses').set(expenseData).then(() => done());
@@ -37,6 +40,36 @@ test('should remove expenses from database and store', (done) => {
     return database.ref(`expenses/${id}`).once('value');
   }).then((snapshot) => {
     expect(snapshot.val()).toBeFalsy();
+    done();
+  });
+});
+
+test('should edit expenses from database and store', (done) => {
+  const store = createMockStore({});
+  const id = expenses[2].id
+
+  const { description, amount, note, createdAt} = expenses[2]
+
+  const expenseData = { description, amount, note, createdAt }
+  const updates = {
+    description: 'House Monthly Rent',
+    note: 'Too expensive',
+  }
+
+  store.dispatch(startEditExpense(id, updates)).then(() => {
+    const actions = store.getActions();
+    expect(actions[0]).toEqual({
+      type: 'EDIT_EXPENSE',
+      id,
+      updates
+    });
+
+    return database.ref(`expenses/${id}`).once('value');
+  }).then((snapshot) => {
+    expect(snapshot.val()).toEqual({
+      ...expenseData,
+      ...updates
+    });
     done();
   });
 });
