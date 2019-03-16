@@ -8,13 +8,6 @@ exports[`should render Header correctly 1`] = `
   <NavLink
     activeClassName="is-active"
     exact={true}
-    to="/"
-  >
-    login
-  </NavLink>
-  <NavLink
-    activeClassName="is-active"
-    exact={true}
     to="/dashboard"
   >
     Dashboard
